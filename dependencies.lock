@@ -1,0 +1,58 @@
+dependencies:
+  espressif/ble_conn_mgr:
+    component_hash: 8b25a8f4cbc36d3b6969de01e5e69a2e4c3f4d796a6a55dff16f7215e84fcc0d
+    dependencies:
+    - name: espressif/cmake_utilities
+      registry_url: https://components.espressif.com
+      require: private
+      version: 0.*
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.3.1
+  espressif/ble_midi:
+    component_hash: 51a7074df56dd16083401988a12a3b061ac2e7ce5011fdc4e7ec48f889b3b1dd
+    dependencies:
+    - name: espressif/ble_conn_mgr
+      registry_url: https://components.espressif.com
+      require: private
+      version: ~1.*
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.0~2
+  espressif/ble_services:
+    component_hash: a52fcb24e0cf6cb4b3352ef6bd028ab3cb0bdfe9946f1eb24c2c1c44ec54094e
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.5.0
+  espressif/cmake_utilities:
+    component_hash: 351350613ceafba240b761b4ea991e0f231ac7a9f59a9ee901f751bddc0bb18f
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1'
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 0.5.3
+  idf:
+    source:
+      type: idf
+    version: 6.0.1
+direct_dependencies:
+- espressif/ble_conn_mgr
+- espressif/ble_midi
+- espressif/ble_services
+- idf
+manifest_hash: 395d7474789c88782ea2f970abebb5ace60780d694e7de87c4b5dbc0b379bc83
+target: esp32s3
+version: 3.0.0
