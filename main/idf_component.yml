@@ -1,0 +1,8 @@
+dependencies:
+  ble_conn_mgr:
+    version: ~1.*
+  ble_midi:
+    version: ~0.*
+  ble_services:
+    version: ~1.*
+  idf: '>=4.3'
