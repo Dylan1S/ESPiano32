@@ -5,7 +5,7 @@
 /**
  * set containing all notes currently held down
  */
-static note_set_t s_held;
+static note_set_t s_held = {0};
 
 const char* TAG = "NOTE_TRACKER";
 // forward declarations of all functions
@@ -31,9 +31,9 @@ enum notes
 
 enum midi_message_status : uint8_t
 {
-    STATUS_NOTE_OFF     = 0x8,
-    STATUS_NOTE_ON      = 0x9,
-    STATUS_CONTROLLER   = 0xB,
+    STATUS_NOTE_OFF     = 0x80,
+    STATUS_NOTE_ON      = 0x90,
+    STATUS_CONTROLLER   = 0xB0,
     STATUS_POLYPHONIC_AFTERTOUCH = 0xA, //might not need this, unsure 
 };
 
@@ -41,15 +41,22 @@ enum midi_message_status : uint8_t
 //Lookup table for all notes. Any note can be found with k_pitch_notes[note % 12]
 static const char *const k_pitch_notes[12] = 
 {
-    "C", "C#", "D", "D#", "E", "E#", "F", "F#", "G", "G#" "A", "A#", "B", "B#"
+    "C", "C#", "D", "D#", "E", "E#", "F", "F#", "G", "G#" "A", "A#", "B"
 };
 
 
 
-static void set_note(note_set_t *s, uint8_t note);
+static void set_note(note_set_t *s, uint8_t note)
+{
+    ESP_LOGI(TAG, "NOTE ON: %s", k_pitch_notes[note%12]);
+    s->notes[note/32] |= (1u << (note % 32));
+}
 
-static void clear_note(note_set_t *s, uint8_t note);
-
+static void clear_note(note_set_t *s, uint8_t note)
+{
+    ESP_LOGI(TAG, "NOTE OFF: %s", k_pitch_notes[note%12]);
+    s->notes[note/32] &= ~(1u << (note % 32));
+}
 
 
 bool note_tracker_handle(const uint8_t* msg, uint16_t len)
@@ -90,6 +97,7 @@ bool note_tracker_handle(const uint8_t* msg, uint16_t len)
             break;
         }
     }
+    return true;
 }
 
 
