@@ -5,12 +5,21 @@
 #include "nvs_flash.h"
 
 #include "bluetooth_mgr.h"
+#include "note_tracker.h"
+#include "note_set.h"
 
 static const char *TAG = "app_main";
 
 static void on_midi_message(uint16_t ts_ms, const uint8_t *msg, uint16_t msg_len)
 {
     ESP_LOGI(TAG, "MIDI EVT ts=%u len=%u", ts_ms, msg_len);
+    note_tracker_handle(msg, msg_len);
+    note_set_t held = note_tracker_get();
+    char notes_text[128] ; //arbitrary size for now - will fix
+    size_t num_set = note_set_format(&held, notes_text, sizeof(notes_text));
+    ESP_LOGI(TAG, "NOTES: %s", notes_text);
+
+
 
     char line[96] = {0};
     size_t pos = 0;
