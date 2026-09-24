@@ -4,13 +4,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "note_set.h"
 
 
-
-typedef struct {uint32_t notes[4]; } note_set_t;
 
 bool note_tracker_handle(const uint8_t* msg, uint16_t len);
 
-void note_tracker_get(note_set_t* out);
+note_set_t note_tracker_get(void);
 
 void note_tracker_reset(void);
