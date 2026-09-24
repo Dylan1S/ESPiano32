@@ -201,6 +201,7 @@ static void conn_event_handler(void *handler_args, esp_event_base_t base, int32_
         } else {
             ESP_LOGW(TAG, "DATA_RECEIVE for non-MIDI UUID, len=%u", conn_data->data_len);
         }
+        free(conn_data->data);
         break;
     }
 
