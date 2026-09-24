@@ -1,0 +1,12 @@
+dependencies:
+  ble_conn_mgr:
+    version: ~1.*
+  idf: '>=4.3'
+description: BLE profile for MIDI over BLE (BLE-MIDI)
+issues: https://github.com/espressif/esp-iot-solution/issues
+repository: git://github.com/espressif/esp-iot-solution.git
+repository_info:
+  commit_sha: db9f2f48527f9a98a87e0ca741c8dacd31814f42
+  path: components/bluetooth/ble_profiles/third_party/ble_midi
+url: https://github.com/espressif/esp-iot-solution/tree/master/components/bluetooth/ble_profiles/third_party/ble_midi
+version: 0.1.0~2
