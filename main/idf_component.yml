@@ -1,8 +1,10 @@
 dependencies:
   ble_conn_mgr:
     version: ~1.*
+    override_path: "../components/ble_conn_mgr"
   ble_midi:
     version: ~0.*
+    override_path: "../components/ble_midi"
   ble_services:
     version: ~1.*
   idf: '>=4.3'
